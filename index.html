@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CareNest Hospital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">+</div>
+          <div>
+            <h2>CareNest</h2>
+            <p>Hospital</p>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active" data-target="home">
+            <span>🏠</span>
+            Home
+          </button>
+          <button class="nav-item" data-target="doctors">
+            <span>👨‍⚕️</span>
+            Doctors
+          </button>
+          <button class="nav-item" data-target="appointments">
+            <span>📅</span>
+            Appointments
+          </button>
+          <button class="nav-item" data-target="records">
+            <span>📋</span>
+            Records
+          </button>
+          <button class="nav-item" data-target="billing">
+            <span>💳</span>
+            Billing
+          </button>
+          <button class="nav-item" data-target="labs">
+            <span>🧪</span>
+            Lab Reports
+          </button>
+          <button class="nav-item" data-target="notifications">
+            <span>🔔</span>
+            Notifications
+          </button>
+          <button class="nav-item" data-target="contact">
+            <span>📞</span>
+            Contact Us
+          </button>
+          <button class="nav-item" data-target="admin">
+            <span>🔐</span>
+            Admin Panel
+          </button>
+        </nav>
+
+        <div class="sidebar-card emergency">
+          <p class="eyebrow">Emergency</p>
+          <h3>Ambulance</h3>
+          <strong>24/7 Service</strong>
+          <span>Ext: 102</span>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Overview</p>
+            <h1>Hospital Management System</h1>
+          </div>
+          <div class="topbar-actions">
+            <label class="search-box">
+              <span>🔎</span>
+              <input id="patientSearch" type="search" placeholder="Search patient / doctor..." />
+            </label>
+            <button type="button" class="primary-button" id="searchBtn">Search</button>
+            <button class="primary-button" id="quickAddBtn">+ Add Patient</button>
+          </div>
+        </header>
+
+        <section id="home" class="page-section">
+          <div class="hero-card panel">
+            <div class="hero-copy">
+              <p class="eyebrow">Trusted care</p>
+              <h2>Compassionate healthcare for every patient.</h2>
+              <p>
+                CareNest Hospital provides modern treatment, skilled doctors, digital records,
+                and seamless patient care for families across India.
+              </p>
+              <div class="hero-actions">
+                <button class="primary-button" data-target="appointments">Book Appointment</button>
+                <button class="ghost-button">Emergency Help</button>
+              </div>
+            </div>
+            <div class="hero-stats">
+              <div class="mini-stat">
+                <strong id="homeDoctorsCount">0</strong>
+                <span>Doctors</span>
+              </div>
+              <div class="mini-stat">
+                <strong id="homePatientsCount">0</strong>
+                <span>Patients</span>
+              </div>
+              <div class="mini-stat">
+                <strong>24/7</strong>
+                <span>Support</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-grid">
+            <div class="service-card panel">
+              <span>🩺</span>
+              <h3>General Consultation</h3>
+              <p>Routine visits with our experienced physicians.</p>
+            </div>
+            <div class="service-card panel">
+              <span>🧬</span>
+              <h3>Diagnostics</h3>
+              <p>Blood tests, scans, reports, and advanced lab analysis.</p>
+            </div>
+            <div class="service-card panel">
+              <span>💉</span>
+              <h3>Emergency Care</h3>
+              <p>Rapid support for trauma, critical conditions and urgent treatment.</p>
+            </div>
+            <div class="service-card panel">
+              <span>🧑‍⚕️</span>
+              <h3>Inpatient Care</h3>
+              <p>Comfortable recovery rooms and medical monitoring.</p>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="doctors" class="page-section hidden-section">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Medical Team</p>
+                <h2>Our Doctors</h2>
+              </div>
+            </div>
+            <div id="doctorGrid" class="doctor-grid"></div>
+          </div>
+        </section>
+
+        <section id="appointments" class="page-section hidden-section">
+          <div class="two-column-grid">
+            <div class="panel form-panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Book</p>
+                  <h2>Appointment Booking</h2>
+                </div>
+              </div>
+
+              <form id="appointmentForm" class="patient-form">
+                <label>
+                  Patient Name
+                  <input type="text" name="appointmentPatient" placeholder="e.g. Raj Sharma" required />
+                </label>
+
+                <label>
+                  Doctor
+                  <select name="appointmentDoctor" required>
+                    <option value="">Select doctor</option>
+                  </select>
+                </label>
+
+                <div class="field-row">
+                  <label>
+                    Date
+                    <input type="date" name="appointmentDate" required />
+                  </label>
+                  <label>
+                    Time
+                    <input type="time" name="appointmentTime" required />
+                  </label>
+                </div>
+
+                <label>
+                  Reason
+                  <input type="text" name="appointmentReason" placeholder="Consultation / Follow-up" required />
+                </label>
+
+                <button type="submit" class="primary-button full-width">Confirm Booking</button>
+                <div id="bookingStatus" class="booking-status" aria-live="polite"></div>
+              </form>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Schedule</p>
+                  <h2>Upcoming Visits</h2>
+                </div>
+                <span class="chip success" id="appointmentCountChip">0</span>
+              </div>
+              <div id="appointmentList" class="stack-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="records" class="page-section hidden-section">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Patient History</p>
+                <h2>Patient Records</h2>
+              </div>
+            </div>
+            <div id="recordsList" class="record-list"></div>
+          </div>
+        </section>
+
+        <section id="billing" class="page-section hidden-section">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Finance</p>
+                <h2>Billing & Payments</h2>
+              </div>
+            </div>
+            <div id="billingList" class="billing-list"></div>
+          </div>
+        </section>
+
+        <section id="labs" class="page-section hidden-section">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Reports</p>
+                <h2>Lab Reports</h2>
+              </div>
+            </div>
+            <div id="labList" class="lab-list"></div>
+          </div>
+        </section>
+
+        <section id="notifications" class="page-section hidden-section">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Alerts</p>
+                <h2>Notifications</h2>
+              </div>
+            </div>
+            <div id="notificationList" class="notification-list"></div>
+          </div>
+        </section>
+
+        <section id="contact" class="page-section hidden-section">
+          <div class="panel contact-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Reach Us</p>
+                <h2>Contact Us</h2>
+              </div>
+            </div>
+            <div class="contact-grid">
+              <div>
+                <h3>Hospital Address</h3>
+                <p>CareNest Hospital, 24 Wellness Road, Bengaluru, Karnataka 560001</p>
+              </div>
+              <div>
+                <h3>Phone</h3>
+                <p>+91 80 4567 8900</p>
+              </div>
+              <div>
+                <h3>Emergency</h3>
+                <p>+91 98765 43210</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="admin" class="page-section hidden-section">
+          <div class="admin-grid">
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Control Center</p>
+                  <h2>Admin Panel</h2>
+                </div>
+              </div>
+
+              <div class="admin-stats">
+                <div class="mini-stat">
+                  <strong id="adminPatientsCount">0</strong>
+                  <span>Patients</span>
+                </div>
+                <div class="mini-stat">
+                  <strong id="adminDoctorsCount">0</strong>
+                  <span>Doctors</span>
+                </div>
+                <div class="mini-stat">
+                  <strong id="adminAppointmentsCount">0</strong>
+                  <span>Bookings</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel form-panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Manage</p>
+                  <h2>Add Patient</h2>
+                </div>
+              </div>
+
+              <form id="adminPatientForm" class="patient-form">
+                <label>
+                  Patient Name
+                  <input type="text" id="adminPatientName" placeholder="Riya Sharma" required />
+                </label>
+                <div class="field-row">
+                  <label>
+                    Age
+                    <input type="number" id="adminPatientAge" min="1" placeholder="32" required />
+                  </label>
+                  <label>
+                    Status
+                    <select id="adminPatientStatus" required>
+                      <option value="Stable">Stable</option>
+                      <option value="Observation">Observation</option>
+                      <option value="Critical">Critical</option>
+                      <option value="Recovery">Recovery</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Condition
+                  <input type="text" id="adminPatientCondition" placeholder="Joint Pain" required />
+                </label>
+                <label>
+                  Assigned Doctor
+                  <select id="adminPatientDoctor" required>
+                    <option value="">Select doctor</option>
+                  </select>
+                </label>
+                <button type="submit" class="primary-button full-width">Add Patient</button>
+              </form>
+            </div>
+
+            <div class="panel form-panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Manage</p>
+                  <h2>Add Doctor</h2>
+                </div>
+              </div>
+
+              <form id="adminDoctorForm" class="patient-form">
+                <label>
+                  Doctor Name
+                  <input type="text" id="adminDoctorName" placeholder="Dr. Neha Verma" required />
+                </label>
+                <label>
+                  Specialization
+                  <input type="text" id="adminDoctorSpecialty" placeholder="Dermatology" required />
+                </label>
+                <label>
+                  Available Days
+                  <input type="text" id="adminDoctorDays" placeholder="Mon, Wed, Fri" required />
+                </label>
+                <button type="submit" class="primary-button full-width">Add Doctor</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="admin-grid" style="margin-top: 1.5rem;">
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Directory</p>
+                  <h2>Patients List</h2>
+                </div>
+              </div>
+              <div id="adminPatientsList" class="stack-list"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Directory</p>
+                  <h2>Doctors List</h2>
+                </div>
+              </div>
+              <div id="adminDoctorsList" class="stack-list"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
